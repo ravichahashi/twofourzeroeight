@@ -10,6 +10,7 @@ namespace twozerofoureight
     public class Model
     {
         protected ArrayList oList;
+        protected int score;
 
         public Model()
         {
@@ -28,5 +29,14 @@ namespace twozerofoureight
             oList.Add(m);
         }
 
+        public int GetScore()
+        {
+            return score;
+        }
+
+        public virtual bool GameOver()
+        {
+            return false;
+        }
     }
 }

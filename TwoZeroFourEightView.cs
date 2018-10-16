@@ -14,7 +14,7 @@ namespace twozerofoureight
     {
         Model model;
         Controller controller;
-       
+        
         public TwoZeroFourEightView()
         {
             InitializeComponent();
@@ -22,7 +22,7 @@ namespace twozerofoureight
             model.AttachObserver(this);
             controller = new TwoZeroFourEightController();
             controller.AddModel(model);
-            controller.ActionPerformed(TwoZeroFourEightController.LEFT);
+            model.NotifyAll();
         }
 
         public void Notify(Model m)
@@ -95,6 +95,27 @@ namespace twozerofoureight
         private void btnDown_Click(object sender, EventArgs e)
         {
             controller.ActionPerformed(TwoZeroFourEightController.DOWN);
+        }
+
+        private void pressArrow(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.Up:
+                    controller.ActionPerformed(TwoZeroFourEightController.UP);
+                    break;
+                case Keys.Left:
+                    controller.ActionPerformed(TwoZeroFourEightController.LEFT);
+                    break;
+                case Keys.Right:
+                    controller.ActionPerformed(TwoZeroFourEightController.RIGHT);
+                    break;
+                case Keys.Down:
+                    controller.ActionPerformed(TwoZeroFourEightController.DOWN);
+                    break;
+            }
+            lblDisplay.Text = (model.GetScore()).ToString();
+            lblSta.Text = (model.GameOver() ? "Game Over" : lblSta.Text);
         }
 
     }

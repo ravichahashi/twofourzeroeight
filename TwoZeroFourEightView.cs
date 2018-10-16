@@ -115,7 +115,13 @@ namespace twozerofoureight
                     break;
             }
             lblDisplay.Text = (model.GetScore()).ToString();
-            lblSta.Text = (model.GameOver() ? "Game Over" : lblSta.Text);
+            if (model.GameOver())
+            {
+                lblSta.Text = (model.GameOver() ? "Game Over" : lblSta.Text);
+                GameOverScreen end = new GameOverScreen(lblDisplay.Text);
+                end.Show();
+            }  
+            
         }
 
     }
